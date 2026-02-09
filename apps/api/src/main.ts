@@ -1,21 +1,65 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import express from 'express';
-import * as path from 'path';
+import http from 'http';
+// import mongoose from 'mongoose';
+import { Server } from 'socket.io';
+import session from 'express-session';
+import { RedisStore } from "connect-redis";
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import { connectToMongo } from './lib/database';
+import redisClient from './lib/redits';
+import { initSocket } from "./lib/socket";
+
+import { startNotificationScheduler } from './services/notification.service';
+
+dotenv.config();
+
+
+
+
+
+
 
 const app = express();
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+const server = http.createServer(app);
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api!' });
-});
+const io = initSocket(server);
+startNotificationScheduler(io);
+
+// const io = new Server(server, {
+//   cors: { origin: 'http://localhost:4200', credentials: true }
+// });
+
+// --- Middleware ---
+app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
+
+
+
+// --- Session Store ---
+app.use(
+  session({
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET || "supersecretclinic",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+
+
+
+
 
 const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api`);
+  connectToMongo();
 });
-server.on('error', console.error);
