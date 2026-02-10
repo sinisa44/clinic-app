@@ -27,7 +27,7 @@ export const createEvent = async(req:Request, res:Response) => {
   if (!user || user.role !== 'doctor') return res.status(403).send('Forbidden');
 
   try {
-    const event = await EventService.createEvent(req.body);
+    const event = await EventService.createEvent(req.body, user);
     
     // WS Notifikacija pacijentu da re-fetchuje
     const patientRoom = req.body.patientId;
@@ -60,7 +60,7 @@ export const createBatchEvents = async(req:Request, res:Response) => {
 
     // WS Notifikacija
     // io.to(patientId).emit('event-created', events);
-    getIO().to(patientId).emit("event-created", event);
+    getIO().to(patientId).emit("event-created", events);
 
     res.json(events);
   } catch (e) {

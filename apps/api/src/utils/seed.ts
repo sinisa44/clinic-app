@@ -21,7 +21,7 @@ const seed = async() => {
         await User.deleteMany({});
         await EventModel.deleteMany({});
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 5; i++) {
             const user = await User.create({
                 username: faker.person.fullName(),
                 password: '123',

@@ -15,12 +15,9 @@ import { startNotificationScheduler } from './services/notification.service';
 
 import authRoutes from './routes/auth.routes';
 import eventRoutes from './routes/event.routes';
+import userRoutes from './routes/user.routes';
 
 dotenv.config();
-
-
-
-
 
 
 
@@ -32,7 +29,7 @@ const io = initSocket(server);
 startNotificationScheduler(io);
 
 
-app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -55,6 +52,7 @@ app.use(
 
 app.use('/api/auth', authRoutes)
 app.use('/api/events', eventRoutes)
+app.use('/api/users', userRoutes)
 
 
 

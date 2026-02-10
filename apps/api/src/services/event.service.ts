@@ -12,7 +12,7 @@ type batchEventParams = {
     timeStr: string, 
     doctorTimezone: string
 }
-export const createEvent = async (eventData: Event) => {
+export const createEvent = async (eventData: Event, user) => {
     const start = new Date(eventData.startTime)
     const end = addMinutes(start, 30)
 
@@ -20,7 +20,8 @@ export const createEvent = async (eventData: Event) => {
     const event = new EventModel({
         ...eventData,
         startTime: start,
-        endTime: end
+        endTime: end,
+        doctorId: user._id
     })
 
     const newEvent = await event.save();
