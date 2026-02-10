@@ -13,6 +13,9 @@ import { initSocket } from "./lib/socket";
 
 import { startNotificationScheduler } from './services/notification.service';
 
+import authRoutes from './routes/auth.routes';
+import eventRoutes from './routes/event.routes';
+
 dotenv.config();
 
 
@@ -28,11 +31,7 @@ const server = http.createServer(app);
 const io = initSocket(server);
 startNotificationScheduler(io);
 
-// const io = new Server(server, {
-//   cors: { origin: 'http://localhost:4200', credentials: true }
-// });
 
-// --- Middleware ---
 app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -54,7 +53,8 @@ app.use(
   })
 );
 
-
+app.use('/api/auth', authRoutes)
+app.use('/api/events', eventRoutes)
 
 
 

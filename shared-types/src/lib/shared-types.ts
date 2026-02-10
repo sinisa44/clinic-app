@@ -1,12 +1,15 @@
+import {Types} from 'mongoose';
+
 export enum UserRole{
-  DOCTOR = 'DOCTOR',
-  PATIENT = 'PATIENT'
+  DOCTOR = 'doctor',
+  PATIENT = 'patient'
 }
 
 export interface User{
   _id: string;
   username: string;
   timezone: string;
+  password?:string;
   role: UserRole;
 }
 
@@ -14,9 +17,9 @@ export interface Event{
   _id:string;
   title:string;
   startTime:string;
-  endTIme:string;
-  doctorId:string | User;
-  patientId:string | User;
+  endTime:string;
+  doctorId: Types.ObjectId;
+  patientId: Types.ObjectId;
 }
 
 export interface LoginResponse{

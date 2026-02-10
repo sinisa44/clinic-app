@@ -4,7 +4,11 @@ import {User} from '../models/User';
 export const login = async (req:Request, res:Response) => {
     const {username, password, timezone} = req.body;
 
+    console.log(req.body)
+
     const user = await User.findOne({username, password});
+
+    console.log("USER", user)
 
     if (!user) return res.status(401).send('Unauthorized');
 

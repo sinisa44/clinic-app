@@ -1,5 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { User as IUser, UserRole } from '@clinic-app/shared-types';
+// import { User as IUser, UserRole } from '@clinic-app/shared-types';
+
+import { User as IUser, UserRole } from '../../../../shared-types/src/lib/shared-types';
 
 export interface UserDocument extends Omit<IUser, '_id'>, Document {}
 
