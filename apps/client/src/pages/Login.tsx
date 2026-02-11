@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {api} from '../utils/api';
 import { UserRole } from '@clinic-app/shared-types';
-
+import  ROUTES from '../utils/routes';
 export const Login = ({ role }: { role: UserRole }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +13,7 @@ export const Login = ({ role }: { role: UserRole }) => {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     
     try {
-      await api.post('/auth/login', { username, password, timezone });
+      await api.post(ROUTES.AUTH.LOGIN, { username, password, timezone });
       if (role === UserRole.DOCTOR) navigate('/clinic');
       else navigate('/patient');
     } catch (err) {

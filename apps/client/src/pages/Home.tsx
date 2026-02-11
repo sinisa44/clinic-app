@@ -14,6 +14,7 @@ export const Home = () => {
     <div style={{display:'flex', justifyContent:'space-around'}}>
       {links.map((link) => (
         <a
+        key={link.name}
           href={link.location}
           style={{
             border: '1px solid black',

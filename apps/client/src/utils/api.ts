@@ -1,5 +1,7 @@
 import axios from 'axios';
+import ROUTES from './routes';
+
 export const api = axios.create({
-  baseURL: 'http://localhost:3333/api',
+  baseURL: ROUTES.SOCKET_URL,
   withCredentials: true
 });
