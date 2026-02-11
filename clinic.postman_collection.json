@@ -1,0 +1,209 @@
+{
+  "info": {
+    "_postman_id": "03a6f458-7cfd-4bb7-9ec6-2a1c1639aa94",
+    "name": "clinic",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "8197828"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "/api/auth/login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "// {\n//     \"email\":\"sinisa@mail.com\",\n//     \"password\":\"sinisa44\",\n//     \"lastLogin\":\"Europe/Belgrade\",\n//     \"role\":\"doctor\"\n// }\n{\"username\": \"sinisa\",\n\"password\": \"123\",\n\"timezone\": \"Europe/Belgrade\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3333/api/auth/login",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/api/auth/me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/api/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "/api/events",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"test\",\n    \" patientId\": \"698b0acbff57bc1fa127677a\",\n    \"startTime\": \"2026-02-27T11:00:00.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3001/api/events/create",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "events",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/api/events/get",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3333/api/events/get",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "api",
+                "events",
+                "get"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/api/events/create-batch",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"test\",\n    \"patientId\": \"698b0acbff57bc1fa127677a\",\n    \"time\": \"12:00\",\n    \"endDate\": \"2026-03-06\",\n    \"startDate\":\"2026-03-25\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3333/api/events/create-batch",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "api",
+                "events",
+                "create-batch"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "/api/users/patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/api/users/patients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "api",
+                "users",
+                "patients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/api/users/doctors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3333/api/users/doctors",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3333",
+              "path": [
+                "api",
+                "users",
+                "doctors"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

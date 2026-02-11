@@ -72,7 +72,7 @@ export const DoctorDashboard = () => {
           startTime: localDate.toISOString(),
         });
       }
-      fetchEvents();
+      // fetchEvents();
       alert('Success');
       setSelectedDay(null);
     } catch (err) {

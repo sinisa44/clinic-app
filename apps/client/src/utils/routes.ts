@@ -2,17 +2,18 @@ const ROUTES = {
     SOCKET_URL :'http://localhost:3333',
 
     AUTH:{
-        LOGIN:'/auth/login'
+        LOGIN:'/api/auth/login',
+        ME:'/api/auth/me',
     },
 
     EVENTS: {
-        GET:'/events/get',
-        CREATE_BATCH:'/events/create-batch',
-        CREATE_EVENT:"/events/create"
+        GET:'/api/events/get',
+        CREATE_BATCH:'/api/events/create-batch',
+        CREATE_EVENT:"/api/events/create"
     },
     USERS:{
-        GET_PATIENTS:"/users/patients",
-        GET_DOCTORS:"/users/doctors"
+        GET_PATIENTS:"/api/users/patients",
+        GET_DOCTORS:"/api/users/doctors"
     },
 
 }

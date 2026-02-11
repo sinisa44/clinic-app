@@ -3,6 +3,7 @@ import { UserRole } from '@clinic-app/shared-types';
 import { useLocation, Navigate } from 'react-router-dom';
 import { api } from '../utils/api';
 import socketConnection from '../utils/socket';
+import ROUTES from '../utils/routes';
 
 const ProtectedRoute = ({ children, role }: { children: JSX.Element, role?: UserRole }) => {
   const [user, setUser] = useState<any>(null);
@@ -10,7 +11,7 @@ const ProtectedRoute = ({ children, role }: { children: JSX.Element, role?: User
   const location = useLocation();
   
   useEffect(() => {
-    api.get('/auth/me').then(res => {
+    api.get(ROUTES.AUTH.ME).then(res => {
       setUser(res.data.user);
       socketConnection.emit('join-room', res.data.user._id);
     }).catch(() => {

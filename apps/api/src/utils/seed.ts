@@ -16,20 +16,38 @@ dotenv.config()
 const seed = async() => {
     connectToMongo();
 
+    const testUsers = [
+        {
+            username: 'doctor',
+            password: '123',
+            role: 'doctor',
+            timezone: 'Belgrade/Belgrade'
+        },
+        {
+            username: 'patient',
+            password: '123',
+            role: 'patient',
+            timezone: 'Belgrade/Belgrade'
+        }
+    ]
    
     try{
         await User.deleteMany({});
         await EventModel.deleteMany({});
+
+        testUsers.forEach(async (user) => {
+            await User.create(user);
+
+            console.log('test users seeded')
+        });
 
         for (let i = 0; i < 5; i++) {
             const user = await User.create({
                 username: faker.person.fullName(),
                 password: '123',
                 role: faker.helpers.enumValue(UserRole),
-                timezone: 'UTC'
+                timezone: 'Belgrade/Belgrade'
             });
-
-            
             const fakerTime = faker.date.future();
 
             const events = await EventModel.create({
