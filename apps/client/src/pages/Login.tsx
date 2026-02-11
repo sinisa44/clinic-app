@@ -8,7 +8,7 @@ export const Login = ({ role }: { role: UserRole }) => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.SubmitEvent) => {
     e.preventDefault();
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     

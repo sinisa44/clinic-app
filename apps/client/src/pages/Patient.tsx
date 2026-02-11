@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../utils/api';
-// import { socket } from '../App';
-import {socket} from '../app/app';
+
+import socketConnection from '../utils/socket';
 import { format } from 'date-fns';
 
 export const PatientDashboard = () => {
@@ -14,21 +14,21 @@ export const PatientDashboard = () => {
     fetchEvents();
 
     // WS Listeners
-    socket.on('event-created', () => {
+   socketConnection.on('event-created', () => {
 
       console.log('event-created!!!!!!!!!!!!');
       fetchEvents();
       setNotifications(prev => [...prev, 'New event added by doctor!']);
     });
 
-    socket.on('notification', (data: any) => {
+   socketConnection.on('notification', (data: any) => {
       setNotifications(prev => [...prev, data.message]);
       alert(data.message); 
     });
 
     return () => {
-      socket.off('event-created');
-      socket.off('notification');
+     socketConnection.off('event-created');
+     socketConnection.off('notification');
     };
   }, []);
 
