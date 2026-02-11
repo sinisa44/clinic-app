@@ -80,7 +80,7 @@ export const DoctorDashboard = () => {
     }
   };
 
-  // Calendar Grid Logic
+
   const monthStart = startOfMonth(currentDate);
   const monthEnd = addMonths(monthStart, 3); // 3 meseca
   const days = eachDayOfInterval({

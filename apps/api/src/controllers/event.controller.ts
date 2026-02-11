@@ -9,16 +9,16 @@ export const getEvents = async(req:Request, res:Response) => {
 
   let query = {};
   if (user.role === 'doctor') {
-    // Doktor vidi sve
+
     query = {};
   } else {
-    // Pacijent vidi samo svoje
+
     query = { patientId: user._id };
   }
 
   const events = await EventModel.find(query)
     .populate('patientId', 'username')
-    .sort({ startTime: 1 }); // Od najskorijeg
+    .sort({ startTime: 1 });
   res.json(events);
 }
 
@@ -55,7 +55,7 @@ export const createBatchEvents = async(req:Request, res:Response) => {
       startDateStr:startDate,
       endDateStr:endDate,
       timeStr:time,
-      doctorTimezone:user.timezone,// Koristimo doktorovu zonu za kreiranje
+      doctorTimezone:user.timezone,
   });
 
     // WS Notifikacija

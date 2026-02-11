@@ -8,7 +8,7 @@ export const startNotificationScheduler = (io: Server) => {
   // Provera svakih 30 sekundi
   setInterval(async () => {
     const now = new Date();
-    // Tražimo evente koji počinju za tačno 5 minuta (sa malim bufferom od 30s)
+  
     const targetTimeStart = addMinutes(now, 5); 
     const targetTimeEnd = addMinutes(now, 5.5);
 
@@ -22,7 +22,7 @@ export const startNotificationScheduler = (io: Server) => {
     for (const event of events) {
       const patient = event.patientId as any;
       if (patient) {
-        // Log u konzoli backenda (simulacija)
+    
         // Formatiramo vreme kako ga pacijent vidi
         const patientLocalTime = formatInTimeZone(event.startTime, patient.timezone, 'yyyy-MM-dd HH:mm:ssXXX');
         

@@ -15,7 +15,6 @@ export const PatientDashboard = () => {
   useEffect(() => {
     fetchEvents();
 
-    // WS Listeners
     socketConnection.on('event-created', () => {
       console.log('event-created!!!!!!!!!!!!');
       fetchEvents();
@@ -67,7 +66,6 @@ export const PatientDashboard = () => {
             >
               <div style={{ fontWeight: 'bold', fontSize: 18 }}>{ev.title}</div>
               <div>
-                {/* Prikaz vremena u lokalnoj zoni pacijenta (browser default) */}
                 Start: {format(new Date(ev.startTime), 'dd.MM.yyyy HH:mm')}{' '}
                 <br />
                 End: {format(new Date(ev.endTime), 'HH:mm')}
