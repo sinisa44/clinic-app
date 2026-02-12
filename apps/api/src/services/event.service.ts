@@ -19,8 +19,8 @@ export const createEvent = async (eventData: Event, user) => {
 
     const event = new EventModel({
         ...eventData,
-        startTime: start,
-        endTime: end,
+        startTime: eventData.startTime,
+        endTime: end.toISOString(),
         doctorId: user._id
     })
 
@@ -51,8 +51,8 @@ export const createBatchEvents = async( data: batchEventParams ) => {
       title,
       doctorId,
       patientId,
-      startTime: utcDate,
-      endTime: addMinutes(utcDate, 30)
+      startTime: utcDate.toISOString(),
+      endTime: addMinutes(utcDate, 30).toISOString()
     });
 
     createdEvents.push(event);

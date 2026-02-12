@@ -26,6 +26,7 @@ export const DoctorDashboard = () => {
     title: '',
     patientId: '',
     time: '12:00',
+    startDate:'',
     endDate: '',
   });
 
@@ -53,13 +54,16 @@ export const DoctorDashboard = () => {
     e.preventDefault();
     if (!selectedDay) return;
 
+    // console.log(formData);
+
+    // return
     try {
       if (isBatch) {
         await api.post(ROUTES.EVENTS.CREATE_BATCH, {
           title: formData.title,
           patientId: formData.patientId,
           time: formData.time,
-          startDate: format(selectedDay, 'yyyy-MM-dd'),
+          startDate: formData.startDate,
           endDate: formData.endDate,
         });
       } else {
@@ -192,6 +196,15 @@ export const DoctorDashboard = () => {
 
             {isBatch && (
               <>
+               <label>StartDate:</label>
+                <input
+                  required
+                  type="date"
+                  onChange={(e) =>
+                    setFormData({ ...formData, startDate: e.target.value })
+                  }
+                />
+              
                 <label>End Date:</label>
                 <input
                   required
